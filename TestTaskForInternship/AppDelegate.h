@@ -12,6 +12,8 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+//extern NSString* asShortCutType;
+
 
 @end
 

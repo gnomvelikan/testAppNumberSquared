@@ -13,6 +13,8 @@
 		95A961E71E35031A00591346 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95A961E51E35031A00591346 /* Main.storyboard */; };
 		95A961E91E35031A00591346 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95A961E81E35031A00591346 /* Assets.xcassets */; };
 		95A961EC1E35031A00591346 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95A961EA1E35031A00591346 /* LaunchScreen.storyboard */; };
+		CE5BC7AD1E421BC200EBA5C3 /* NKCalculations.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5BC7AC1E421BC200EBA5C3 /* NKCalculations.m */; };
+		CE97463F1E38F31F00406E6D /* CustomTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CE97463E1E38F31F00406E6D /* CustomTextField.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,10 @@
 		95A961E81E35031A00591346 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		95A961EB1E35031A00591346 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		95A961ED1E35031A00591346 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE5BC7AB1E421BC200EBA5C3 /* NKCalculations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKCalculations.h; sourceTree = "<group>"; };
+		CE5BC7AC1E421BC200EBA5C3 /* NKCalculations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKCalculations.m; sourceTree = "<group>"; };
+		CE97463D1E38F31F00406E6D /* CustomTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTextField.h; sourceTree = "<group>"; };
+		CE97463E1E38F31F00406E6D /* CustomTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTextField.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +64,10 @@
 		95A961DB1E35031A00591346 /* TestTaskForInternship */ = {
 			isa = PBXGroup;
 			children = (
+				CE5BC7AB1E421BC200EBA5C3 /* NKCalculations.h */,
+				CE5BC7AC1E421BC200EBA5C3 /* NKCalculations.m */,
+				CE97463D1E38F31F00406E6D /* CustomTextField.h */,
+				CE97463E1E38F31F00406E6D /* CustomTextField.m */,
 				95A961DF1E35031A00591346 /* AppDelegate.h */,
 				95A961E01E35031A00591346 /* AppDelegate.m */,
 				95A961E21E35031A00591346 /* ViewController.h */,
@@ -151,7 +161,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE97463F1E38F31F00406E6D /* CustomTextField.m in Sources */,
 				95A961E41E35031A00591346 /* ViewController.m in Sources */,
+				CE5BC7AD1E421BC200EBA5C3 /* NKCalculations.m in Sources */,
 				95A961E11E35031A00591346 /* AppDelegate.m in Sources */,
 				95A961DE1E35031A00591346 /* main.m in Sources */,
 			);
@@ -312,6 +324,7 @@
 				95A961F21E35031A00591346 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

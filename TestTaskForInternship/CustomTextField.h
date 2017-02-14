@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CustomTextField : UITextField <UITextInput>
+@interface CustomTextField : UITextField
 
 @end

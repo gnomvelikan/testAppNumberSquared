@@ -14,32 +14,36 @@
     
     NSLog(@"Метод калькуляции запущен, введенное число = %li", number);
     
-    if (number == 0){
-        self.changedNumber = 0;
-    } else {
+    NSInteger changedNumber = 0;
     
-    
-    long int n = number;
-    long int sum = 0;
-    long int i = 1;
-    long int k = 1;
-    
-    do {
-        sum = sum + k;
+    if (number != 0) {
+        long int n = number;
+        long int sum = 0;
+        long int i = 1;
+        long int k = 1;
         
-        k = k + 2;
+        do {
+            sum = sum + k;
+            
+            k = k + 2;
+            
+            i++;
+            
+        } while (i <= n);
         
-        i++;
-        
-    } while (i <= n);
-    
-    self.changedNumber = sum;
+        changedNumber = sum;
     }
         
-    NSLog(@"Метод калькуляции закончил работу, измененное число = %li", self.changedNumber);
+    NSLog(@"Метод калькуляции закончил работу, измененное число = %@", @(changedNumber));
 
-    return self.changedNumber;
+    self.numberOfCounts++;
     
+    return changedNumber;
+}
+
+- (void)restart
+{
+    self.numberOfCounts = 0;
 }
 
 

@@ -8,19 +8,33 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()
-@property (nonatomic, assign) long int originalNumber;
-@property (nonatomic, assign) long int changedNumber;
-@property (nonatomic, assign) long int numberOfCounts;
+#import "CustomTextField.h"
+#import "NKCalculations.h"
 
+@interface ViewController ()
+
+@property (nonatomic, strong) NKCalculations* calculations;
 
 @end
+
+static NSString* kSettingsResult  = @"result";
+static NSString* kSettingsCount   = @"count";
+
+
+
+
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.calculations = [[NKCalculations alloc] init];
+    [self loadSettings];
+    
+    if (self.calculations.numberOfCounts != 0) {
+        self.resultCountLabel.text = [NSString stringWithFormat:@"%@", @(self.calculations.numberOfCounts)];
+    }
 }
 
 
@@ -35,31 +49,24 @@
 
 #pragma mark - Actions
 
-- (IBAction)numberTextChanged:(CustomTextField *)sender {
-    
-    self.originalNumber = [sender.text intValue];
-    NSLog(@"Юзер ввел число: %li", self.originalNumber);
-
-}
-
-
 - (IBAction)actionCount:(UIButton *)sender {
     
-    NKCalculations* calculations = [[NKCalculations alloc] init];
-    [calculations calculationsWith:self.originalNumber];
+    NSInteger originalNumber = [self.numberField.text integerValue];
     
-    NSLog(@"Измененное число: %li", calculations.changedNumber);
+    NSInteger changedNumber = [self.calculations calculationsWith:originalNumber];
     
-    self.changedNumber = calculations.changedNumber;
-    NSLog(@"Измененное число: %li", self.changedNumber);
-    
-    self.resultLabel.text = [NSString stringWithFormat:@"%li", self.changedNumber];
+    NSLog(@"Измененное число: %li", changedNumber);
     
     
-    self.numberOfCounts ++;
-    NSLog(@"Счетчик расчетов =: %li", self.numberOfCounts);
+    self.resultLabel.text = [NSString stringWithFormat:@"%li", changedNumber];
     
-    self.resultCountLabel.text = [NSString stringWithFormat:@"%li", self.numberOfCounts];
+    
+    NSLog(@"Счетчик расчетов =: %li", self.calculations.numberOfCounts);
+    
+    self.resultCountLabel.text = [NSString stringWithFormat:@"%li", self.calculations.numberOfCounts];
+    
+   [self saveSettings]; //сохраняем все значения
+
 
     
 }
@@ -67,16 +74,60 @@
 
 
 - (IBAction)actionRestart:(UIButton *)sender {
-    self.resultCountLabel.text = @"#111";
     self.resultLabel.text = @"результат";
     self.numberField.text = nil;
     
-    self.numberOfCounts = 0;
-    NSLog(@"Количество расчетов = %li", self.numberOfCounts);
+    [self.calculations restart];
+    NSLog(@"Количество расчетов = %li", self.calculations.numberOfCounts);
     self.resultCountLabel.text = @"#";
     [self.numberField resignFirstResponder];
+    
+    
+    [self restartSettings];
 
 }
+
+
+
+#pragma mark - Save and Load
+- (void) saveSettings {
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    
+    [userDefaults setObject:@(self.calculations.numberOfCounts) forKey:kSettingsCount];
+    [userDefaults setObject:self.resultLabel.text forKey:kSettingsResult];
+ 
+    [userDefaults synchronize];
+    
+}
+
+
+
+- (void) loadSettings {
+    
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    if ([userDefaults objectForKey:kSettingsResult] != nil) {
+        self.resultLabel.text = [userDefaults objectForKey:kSettingsResult];
+    }
+
+    if ([userDefaults objectForKey:kSettingsCount] != nil) {
+        self.calculations.numberOfCounts = [[userDefaults objectForKey:kSettingsCount] integerValue];
+    }
+    
+}
+
+- (void)restartSettings
+{
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    [userDefaults removeObjectForKey:kSettingsCount];
+    [userDefaults removeObjectForKey:kSettingsResult];
+    
+    [userDefaults synchronize];
+}
+
+
 
 
 

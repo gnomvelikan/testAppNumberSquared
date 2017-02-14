@@ -11,12 +11,11 @@
 @interface NKCalculations : NSObject
 
 #pragma mark - Properties
-@property (nonatomic, assign) long int originalNumber;
-@property (nonatomic, assign) long int changedNumber;
-//@property (nonatomic, assign) long int numberOfCounts;
+@property (nonatomic, assign) NSInteger numberOfCounts;
 
 #pragma mark - Methods
 -(long int) calculationsWith:(long int) number;
 
+- (void)restart;
 
 @end
